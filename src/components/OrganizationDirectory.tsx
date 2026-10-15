@@ -11,7 +11,7 @@ export function OrganizationDirectory() {
 
   return (
     <section className="organization-section" id="clubs" aria-labelledby="clubs-title">
-      <div className="section-kicker">06 <span>—</span> CAMPUS COMMUNITIES</div>
+      <div className="section-kicker">05 <span>—</span> CAMPUS COMMUNITIES</div>
       <div className="section-title-row">
         <div>
           <h2 id="clubs-title">Clubs <em>&amp; labs.</em></h2>
