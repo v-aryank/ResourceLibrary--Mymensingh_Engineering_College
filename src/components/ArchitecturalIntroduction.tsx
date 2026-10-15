@@ -4,11 +4,11 @@ export function ArchitecturalIntroduction() {
       <div className="section-kicker">01 <span>—</span> THE CAMPUS</div>
       <div className="intro-grid">
         <div className="intro-heading">
-          <h2 id="intro-title">A campus with<br /><em>character.</em></h2>
+          <h2 id="intro-title">A campus of<br /><em>Red Brick.</em></h2>
           <span className="heading-rule" />
         </div>
         <div className="intro-text">
-          <p className="intro-lede">Red brick. Open sky. Room to think.</p>
+          <p className="intro-lede">Red brick. Open sky. Place to think.</p>
           <p>Our campus brings together the warmth of familiar materials and the energy of an engineering community. Walkways connect the buildings; trees soften the edges; every view has a little room to breathe.</p>
           <a href="#spaces" className="inline-link">Take a closer look <span aria-hidden="true">↗</span></a>
         </div>

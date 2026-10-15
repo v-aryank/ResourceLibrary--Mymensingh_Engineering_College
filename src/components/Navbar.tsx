@@ -35,8 +35,8 @@ export function Navbar() {
       </button>
       <nav id="site-nav" className={menuOpen ? 'open' : undefined} aria-label="Main navigation">
         <Link to="/" onClick={goHome}>Home</Link>
-        <Link to="/resources" onClick={closeMenu}>Library</Link>
-        <Link to="/#student-tools" onClick={closeMenu}>Student Tools</Link>
+        <Link to="/#campus" onClick={closeMenu}>Campus</Link>
+        <Link to="/#student-tools" onClick={closeMenu}>Essential Tools</Link>
         <Link to="/#clubs" onClick={closeMenu}>Clubs &amp; Labs</Link>
         <Link className="nav-cta" to="/resources" onClick={closeMenu}>Explore Library <span>↗</span></Link>
       </nav>
