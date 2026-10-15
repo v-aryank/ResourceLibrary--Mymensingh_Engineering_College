@@ -42,7 +42,7 @@ function HomePage() {
 function NotFoundPage() {
   return (
     <main className="not-found-page">
-      <div className="section-kicker">MEC STUDENT DESK <span>—</span> 404</div>
+      <div className="section-kicker">MEC Resource Library <span>—</span> 404</div>
       <h1>This page is<br /><em>not on the map.</em></h1>
       <p>The page may have moved. Return to the Student Desk home page or open the resource library.</p>
       <a className="button button-dark" href="/">Back to home <span aria-hidden="true">↗</span></a>

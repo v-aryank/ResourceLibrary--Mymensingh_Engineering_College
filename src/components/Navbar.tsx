@@ -15,11 +15,11 @@ export function Navbar() {
 
   return (
     <header className="nav-wrap">
-      <Link className="brand" to="/" aria-label="MEC Student Desk home" onClick={goHome}>
+      <Link className="brand" to="/" aria-label="MEC Resource Library home" onClick={goHome}>
         <img className="brand-logo" src="/mec-logo.png" alt="" />
         <span className="brand-name">
-          MEC Student Desk
-          <small>MYMENSINGH ENGINEERING COLLEGE · RESOURCE LIBRARY</small>
+          MEC Resource Library
+          <small>MYMENSINGH ENGINEERING COLLEGE</small>
         </span>
       </Link>
       <button
@@ -35,7 +35,7 @@ export function Navbar() {
       </button>
       <nav id="site-nav" className={menuOpen ? 'open' : undefined} aria-label="Main navigation">
         <Link to="/" onClick={goHome}>Home</Link>
-        <Link to="/resources" onClick={closeMenu}>Resource Library</Link>
+        <Link to="/resources" onClick={closeMenu}>Library</Link>
         <Link to="/#student-tools" onClick={closeMenu}>Student Tools</Link>
         <Link to="/#clubs" onClick={closeMenu}>Clubs &amp; Labs</Link>
         <Link className="nav-cta" to="/resources" onClick={closeMenu}>Explore Library <span>↗</span></Link>

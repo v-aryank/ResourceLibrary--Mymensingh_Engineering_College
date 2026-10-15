@@ -65,8 +65,8 @@ export function ResourceLibraryPage() {
   return (
     <main className="resource-page" id="top">
       <section className="resource-page-heading">
-        <div className="section-kicker">MEC STUDENT DESK <span>—</span> RESOURCE LIBRARY</div>
-        <h1>Find what you<br /><em>need to learn.</em></h1>
+        <div className="section-kicker">RESOURCE LIBRARY</div>
+        <h1>All your resources here<br /><em>Find what you need to learn.</em></h1>
         <p>Browse the academic materials shared with the Student Desk. Search by title, author, subject, course code, or keyword.</p>
         <ResourceSearchEntry
           label="Search resources"

@@ -6,12 +6,12 @@ export function Footer() {
       <div className="footer-top">
         <Link className="brand footer-brand" to="/">
           <img className="brand-logo" src="/mec-logo.png" alt="" />
-          <span className="brand-name">MEC Student Desk<small>MYMENSINGH ENGINEERING COLLEGE · RESOURCE LIBRARY</small></span>
+          <span className="brand-name">MEC Resource Library<small>MYMENSINGH ENGINEERING COLLEGE</small></span>
         </Link>
         <Link to="/#campus" className="footer-contact">Explore the campus <span aria-hidden="true">↗</span></Link>
       </div>
       <div className="footer-bottom">
-        <span>INDEPENDENT STUDENT RESOURCE PORTAL · NOT THE OFFICIAL COLLEGE WEBSITE</span>
+        <span>INDEPENDENT STUDENT RESOURCE PORTAL</span>
         <span>BUILT WITH A SENSE OF PLACE</span>
         <Link to="/">BACK TO TOP ↑</Link>
       </div>

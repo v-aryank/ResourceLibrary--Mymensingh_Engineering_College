@@ -12,7 +12,7 @@ export function HeroSection() {
           <Link className="button button-dark" to="/resources">Explore resources <span aria-hidden="true">↗</span></Link>
           <a className="text-link" href="#student-tools">Student tools <span aria-hidden="true">↓</span></a>
         </div>
-        <div className="hero-note"><span className="note-dot" />MEC STUDENT DESK<span className="note-line" /></div>
+        <div className="hero-note"><span className="note-dot" />All your needs are here<span className="note-line" /></div>
       </div>
       <CampusScene />
       <div className="hero-stamp" aria-hidden="true">LEARN<br />BY<br />MAKING<span>✳</span></div>

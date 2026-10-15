@@ -1,6 +1,6 @@
-# MEC Student Desk
+# MEC Resource Library
 
-MEC Student Desk is a student-focused resource portal for Mymensingh Engineering College. It is an independent resource library, not an official college website. The existing campus image, brick-wall background, typography, and architectural visual treatment are preserved.
+MEC Resource Library is a student-focused resource portal for Mymensingh Engineering College. It is an independent resource library, not an official college website. The existing campus image, brick-wall background, typography, and architectural visual treatment are preserved.
 
 ## Run locally
 
