@@ -1,3 +1,4 @@
+
 export type ExternalService = {
   label: string;
   url: string;
@@ -9,11 +10,13 @@ export const serviceLinks = {
   assignmentCover: {
     label: 'Assignment Cover Page',
     url: 'https://meccover.fidazaman.com',
-    description: 'Open the existing student-built assignment and lab-report cover generator.',
+    description:
+      'Create a formatted cover page for your assignments and lab reports.',
   },
   smartPrinting: {
     label: 'Smart Printing',
     url: 'https://smartvendbd.com/printing/',
-    description: 'Continue to the existing student printing service for its upload and payment workflow.',
+    description:
+      'Upload documents and continue through the existing printing service workflow.',
   },
 } satisfies Record<string, ExternalService>;

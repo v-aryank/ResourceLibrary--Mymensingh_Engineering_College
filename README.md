@@ -27,3 +27,13 @@ npm run preview
 ## External services
 
 The assignment cover generator and Smart Printing links point to the external services configured in `src/config/services.ts`. Student Desk does not process uploads, payments, print orders, or printer status.
+
+
+## Stability and motion
+
+- The brick texture is optimized as `public/brick-texture.webp` (the source JPG is not needed at runtime).
+- The page background scrolls with the document rather than using `background-attachment: fixed`, avoiding a known mobile browser compositing issue.
+- `/resources` uses client-side routing. `vercel.json` and `public/_redirects` configure SPA fallbacks for Vercel and Netlify so refreshing the library route serves the app instead of a host-level 404.
+- Lenis and GSAP ScrollTrigger are progressive enhancements. Reduced-motion preferences disable them, and route/content rendering does not depend on animation.
+
+After pulling these changes, run `npm install` to update `package-lock.json`, then `npm run build`.
