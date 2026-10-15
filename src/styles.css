@@ -280,7 +280,7 @@ h1 em,h2 em{color:#e6ae83}
 @media(max-width:760px){:where(main [id]){scroll-margin-top:78px}}
 /* Keep a visible warm panel tint while letting the brick texture remain present. */
 .intro,.spaces{background:rgba(66,28,26,.56)}
-.essentials-section,.organization-section{background:rgba(247,240,223,.34)}
+.essentials-section,.organization-section{background:rgba(247,240,223,.12)}
 .resource-catalogue{background:rgba(66,28,26,.56)}
 .resource-filters{background:rgba(66,28,26,.64)}
 .printing-panel{background:rgba(66,28,26,.60)}
