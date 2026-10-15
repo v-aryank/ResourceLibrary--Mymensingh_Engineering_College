@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Local npm cache
+.npm-cache/
+
+# TypeScript build cache
+*.tsbuildinfo
