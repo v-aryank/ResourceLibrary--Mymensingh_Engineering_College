@@ -10,9 +10,9 @@ npm run dev
 ```
 
 `npm run dev` starts the Vercel API server on port 3000 and the Vite frontend
-on port 5173. Vite proxies `/api/*` requests to the Vercel server so both
-entry points use the same API routes and request/response formats. Open
-`http://localhost:5173` for the external-browser workflow.
+on port 5173, then opens `http://localhost:5173` in the system's external
+browser. Vite proxies `/api/*` requests to the Vercel server so both entry
+points use the same API routes and request/response formats.
 
 For the integrated browser workflow, run `npm run dev:vercel` (or
 `npm run vercel`) and open `http://localhost:3001`. This serves the Vite

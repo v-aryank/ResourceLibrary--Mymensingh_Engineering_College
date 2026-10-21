@@ -4,6 +4,7 @@ export const resourceCategories = [
   { id: 'lab-guides', label: 'Lab Experiments & Guides' },
   { id: 'lecture-notes', label: 'Lecture Notes' },
   { id: 'course-outlines', label: 'Course Outlines' },
+  { id: 'research-papers', label: 'Research Papers' },
   { id: 'other', label: 'Other Academic Materials' },
 ] as const;
 

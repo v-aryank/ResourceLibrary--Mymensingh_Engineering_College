@@ -14,6 +14,7 @@ const VALID_CATEGORIES = [
   'lab-guides',
   'lecture-notes',
   'course-outlines',
+  'research-papers',
   'other',
 ] as const;
 

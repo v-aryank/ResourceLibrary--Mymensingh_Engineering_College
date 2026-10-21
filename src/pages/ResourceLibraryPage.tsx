@@ -30,6 +30,7 @@ export function ResourceLibraryPage() {
   const [academicYear, setAcademicYear] = useState('');
   const [semester, setSemester] = useState('');
   const [resourceType, setResourceType] = useState('');
+  const [courseSubject, setCourseSubject] = useState('');
   const [author, setAuthor] = useState('');
 
   const [selectedResource, setSelectedResource] =
@@ -202,6 +203,9 @@ export function ResourceLibraryPage() {
             (!selectedSemester || period.semester === selectedSemester),
         );
 
+      const matchesCourseSubject = !courseSubject ||
+        (resource.subject ?? '').toLocaleLowerCase().includes(courseSubject.trim().toLocaleLowerCase());
+
       return (
         (!normalizedQuery || searchable.includes(normalizedQuery)) &&
         (activeCategory === 'all' ||
@@ -209,6 +213,7 @@ export function ResourceLibraryPage() {
         (!department || resource.department === department) &&
         matchesAcademicPeriod &&
         (!resourceType || resource.category === resourceType) &&
+        matchesCourseSubject &&
         (!normalizedAuthor ||
           (resource.author ?? '')
             .toLocaleLowerCase()
@@ -224,8 +229,18 @@ export function ResourceLibraryPage() {
     academicYear,
     semester,
     resourceType,
+    courseSubject,
     author,
   ]);
+
+  const categorizedResources = useMemo(() => resourceCategories
+    .map((category) => ({
+      ...category,
+      resources: filteredResources
+        .filter((resource) => resource.category === category.id)
+        .sort((a, b) => a.title.localeCompare(b.title, undefined, { sensitivity: 'base' })),
+    }))
+    .filter((category) => category.resources.length > 0), [filteredResources]);
 
   const clearFilters = () => {
     setSearchParams({});
@@ -234,6 +249,7 @@ export function ResourceLibraryPage() {
     setAcademicYear('');
     setSemester('');
     setResourceType('');
+    setCourseSubject('');
     setAuthor('');
   };
 
@@ -473,6 +489,16 @@ export function ResourceLibraryPage() {
             </label>
 
             <label>
+              Course / subject
+              <input
+                type="search"
+                value={courseSubject}
+                onChange={(event) => setCourseSubject(event.target.value)}
+                placeholder="Filter by subject"
+              />
+            </label>
+
+            <label>
               Author
               <input
                 type="search"
@@ -527,13 +553,12 @@ export function ResourceLibraryPage() {
 
             {!loadingResources &&
               !resourceLoadError &&
-              filteredResources.length > 0 &&
-              filteredResources.map((resource, index) => {
-                const category =
-                  resourceCategories.find(
-                    (item) => item.id === resource.category,
-                  )?.label ?? '';
-
+              categorizedResources.length > 0 &&
+              categorizedResources.map((section) => (
+                <section className="resource-category-section" key={section.id} aria-labelledby={`category-${section.id}`}>
+                  <h2 id={`category-${section.id}`}>{section.label}</h2>
+                  <div className="resource-category-grid">
+                  {section.resources.map((resource, index) => {
                 return (
                   <article className="resource-card" key={resource.id}>
                     <div
@@ -551,7 +576,7 @@ export function ResourceLibraryPage() {
                     >
                       <div className="resource-card-copy">
                         <div className="resource-card-top">
-                          <span>{category}</span>
+                          <span>{section.label}</span>
                           {resource.demonstration && <span className="demo-label">DEMO</span>}
                         </div>
 
@@ -682,6 +707,9 @@ export function ResourceLibraryPage() {
                   </article>
                 );
               })}
+                  </div>
+                </section>
+              ))}
 
             {!loadingResources &&
               !resourceLoadError &&

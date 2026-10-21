@@ -271,7 +271,7 @@ try {
 
   const vite = start(
     process.execPath,
-    [viteCli, '--host', 'localhost', '--port', '5173', '--strictPort'],
+    [viteCli, '--host', 'localhost', '--port', '5173', '--strictPort', '--open'],
     'Vite frontend',
   );
   await waitForVite(vite);
