@@ -1,0 +1,14 @@
+[
+  {
+    "corsRuleName": "mecResourceUpload",
+    "allowedOrigins": [
+      "https://resourcelibrary-mec.vercel.app",
+      "http://localhost:5173",
+      "http://localhost:3001"
+    ],
+    "allowedOperations": ["s3_put", "s3_get", "s3_head"],
+    "allowedHeaders": ["*"],
+    "exposeHeaders": ["ETag"],
+    "maxAgeSeconds": 3600
+  }
+]

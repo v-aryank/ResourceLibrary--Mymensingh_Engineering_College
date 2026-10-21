@@ -10,9 +10,9 @@ export type Organization = {
 };
 
 export const organizations: Organization[] = [
-  { name: 'Mechatronics & Embedded System Lab', abbreviation: 'MESL', category: 'Laboratory', description: 'A campus laboratory listing. Details will be added when verified.' },
-  { name: 'Alpha Science Lab', abbreviation: 'ASL', category: 'Laboratory', description: 'A campus laboratory listing. Details will be added when verified.' },
-  { name: 'MEC Computer Club', category: 'Club', description: 'A student community listing. Details will be added when verified.' },
-  { name: 'MEC Cultural Club', category: 'Club', description: 'A student community listing. Details will be added when verified.' },
-  { name: 'MEC Debating Club', category: 'Club', description: 'A student community listing. Details will be added when verified.' },
+  { name: 'Mechatronics & Embedded System Lab', abbreviation: 'MESL', category: 'Laboratory', description: 'A campus laboratory listing. Details will be added when verified.', imageUrl: '/mesl.png', websiteUrl: 'https://meslmec.com/', socialLinks: [{ label: 'Facebook', url: 'https://www.facebook.com/MESLMEC/' }] },
+  { name: 'Alpha Science Lab', abbreviation: 'ASL', category: 'Laboratory', description: 'A campus laboratory listing. Details will be added when verified.', imageUrl: '/asl.png', socialLinks: [{ label: 'Facebook', url: 'https://www.facebook.com/Alpha.Science.Lab/' }] },
+  { name: 'MEC Computer Club', category: 'Club', description: 'A student community listing. Details will be added when verified.', imageUrl: '/mcc.png', websiteUrl: 'https://meccomputerclub.org/', socialLinks: [{ label: 'Facebook', url: 'https://www.facebook.com/meccomputerclub/' }] },
+  { name: 'MEC Cultural Club', category: 'Club', description: 'A student community listing. Details will be added when verified.', imageUrl: '/culturalclub.png', socialLinks: [{ label: 'Facebook', url: 'https://web.facebook.com/profile.php?id=61585112259982' }] },
+  { name: 'Mymensingh Engineering College Debating Society', category: 'Club', description: 'A student community listing. Details will be added when verified.', imageUrl: '/debatingclub.png', socialLinks: [{ label: 'Facebook', url: 'https://web.facebook.com/profile.php?id=61583176866458' }] },
 ];
