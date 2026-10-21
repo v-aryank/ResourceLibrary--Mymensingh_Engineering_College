@@ -9,6 +9,11 @@ export const resourceCategories = [
 
 export type ResourceCategory = (typeof resourceCategories)[number]['id'];
 
+export type AcademicPeriod = {
+  year: number;
+  semester: number;
+};
+
 export type AcademicResource = {
   id: string;
   title: string;
@@ -22,9 +27,16 @@ export type AcademicResource = {
   subject?: string;
   keywords?: string[];
   fileUrl?: string;
+  fileUrlExpiresAt?: number;
   fileFormat?: string;
   fileSize?: string;
+  hasFile?: boolean;
+  hasThumbnail?: boolean;
   demonstration?: boolean;
+  thumbnailUrl?: string;
+  thumbnailUrlExpiresAt?: number;
+  thumbnailStatus?: 'none' | 'loading' | 'ready' | 'missing' | 'error';
+  academicPeriods?: AcademicPeriod[];
 };
 
 // These records demonstrate filtering and detail states; they do not represent real MEC materials.

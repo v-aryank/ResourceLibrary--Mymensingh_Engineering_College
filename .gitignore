@@ -9,3 +9,14 @@ dist/
 
 # TypeScript build cache
 *.tsbuildinfo
+
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local storage credentials
+storage-credentials.txt
+.vercel
+.env*

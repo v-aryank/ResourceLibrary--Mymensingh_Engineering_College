@@ -12,6 +12,7 @@ import { OrganizationDirectory } from './components/OrganizationDirectory';
 import { StudentEssentials } from './components/StudentEssentials';
 import { StudentServices } from './components/StudentServices';
 import { ResourceLibraryPage } from './pages/ResourceLibraryPage';
+import { AdminPage } from './pages/AdminPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,6 +32,7 @@ function MotionController() {
       syncTouch: false,
       anchors: true,
       lerp: 0.09,
+      prevent: (node) => Boolean(node.closest('dialog[open]')),
     });
 
     const updateScrollTrigger = () => ScrollTrigger.update();
@@ -130,6 +132,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/resources" element={<ResourceLibraryPage />} />
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />

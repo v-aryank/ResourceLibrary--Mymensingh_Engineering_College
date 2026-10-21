@@ -9,6 +9,23 @@ npm install
 npm run dev
 ```
 
+`npm run dev` starts the Vercel API server on port 3000 and the Vite frontend
+on port 5173. Vite proxies `/api/*` requests to the Vercel server so both
+entry points use the same API routes and request/response formats. Open
+`http://localhost:5173` for the external-browser workflow.
+
+For the integrated browser workflow, run `npm run dev:vercel` (or
+`npm run vercel`) and open `http://localhost:3001`. This serves the Vite
+frontend and `/api/*` functions together without conflicting with
+`npm run dev`. Use `npm run dev` for the external browser at port 5173 and
+`npm run dev:vercel` for the integrated browser at port 3001. Each launcher
+refuses to take over an occupied port; stop a server from its owning terminal
+before retrying.
+
+For authenticated upload flows, configure the existing Supabase and Backblaze
+environment variables in `.env.local`; never put Backblaze credentials in a
+`VITE_` variable.
+
 ## Build
 
 ```bash
@@ -24,9 +41,36 @@ npm run preview
 - Add or update clubs and laboratories in `src/data/organizations.ts`. Website, image, social, and contact fields are optional.
 - Page sections and reusable controls are in `src/components/`; the resource route is in `src/pages/ResourceLibraryPage.tsx`.
 
-## External services
+## Resource uploads
 
-The assignment cover generator and Smart Printing links point to the external services configured in `src/config/services.ts`. Student Desk does not process uploads, payments, print orders, or printer status.
+The `/admin` page uses Supabase Auth and the `profiles.role = 'admin'` check.
+PDFs are uploaded directly to private Backblaze B2 storage using multipart
+presigned URLs; new resource records stay unpublished for review. The resource
+library obtains short-lived file URLs from `/api/resource-url` and only queries
+published records through Supabase RLS. Configure the existing variables
+`VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `B2_ENDPOINT`,
+`B2_BUCKET_NAME`, `B2_KEY_ID`, and `B2_APPLICATION_KEY` in local and deployment
+environments. The private bucket CORS policy must allow browser `PUT` requests from the local
+origins used (`http://localhost:3001` for the integrated workflow and
+`http://localhost:5173` for the Vite workflow) and the production website
+origin, and expose `ETag` for multipart uploads. Keep origins explicit; do not
+use a wildcard. Each origin has separate browser storage, so sign in again when
+switching between ports. Upload access still requires an existing admin account
+with `profiles.role = 'admin'`; changing ports or CORS settings does not grant
+administrator access.
+
+Before using the admin Delete control, apply
+`supabase/migrations/20261020_resource_deletion_jobs.sql` in the Supabase SQL
+editor. It creates admin-only retry state for safe deletion across Supabase and
+Backblaze; it does not delete existing resources.
+
+The assignment cover generator and Smart Printing links point to the external
+services configured in `src/config/services.ts`.
+
+`npm run build` checks the required Vercel API handlers and their shared
+modules before compiling the frontend and API TypeScript. Keep the complete
+`api/` tree in the Git commit used for a Vercel deployment; otherwise Vercel
+can serve the SPA fallback for missing API routes.
 
 
 ## Stability and motion
