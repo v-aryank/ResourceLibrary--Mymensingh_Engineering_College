@@ -5,9 +5,9 @@ import {
   AbortMultipartUploadCommand,
   CreateMultipartUploadCommand,
 } from '@aws-sdk/client-s3';
-import { requireAdmin } from '../_lib/admin';
-import { createB2Storage } from '../_lib/storage';
-import { PDF_PART_SIZE, validatePdfUpload } from '../_lib/upload-validation';
+import { requireAdmin } from '../_lib/admin.js';
+import { createB2Storage } from '../_lib/storage.js';
+import { PDF_PART_SIZE, validatePdfUpload } from '../_lib/upload-validation.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {

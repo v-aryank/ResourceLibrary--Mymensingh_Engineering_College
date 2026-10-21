@@ -2,9 +2,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { UploadPartCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import { requireAdmin } from '../_lib/admin';
-import { createB2Storage } from '../_lib/storage';
-import { MAX_PDF_BYTES, PDF_PART_SIZE } from '../_lib/upload-validation';
+import { requireAdmin } from '../_lib/admin.js';
+import { createB2Storage } from '../_lib/storage.js';
+import { MAX_PDF_BYTES, PDF_PART_SIZE } from '../_lib/upload-validation.js';
 
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {

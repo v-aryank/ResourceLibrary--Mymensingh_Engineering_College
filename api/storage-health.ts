@@ -3,8 +3,8 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import {
   HeadBucketCommand,
 } from '@aws-sdk/client-s3';
-import { requireAdmin } from './_lib/admin';
-import { createB2Storage } from './_lib/storage';
+import { requireAdmin } from './_lib/admin.js';
+import { createB2Storage } from './_lib/storage.js';
 
 export default async function handler(
   req: VercelRequest,

@@ -2,9 +2,9 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { HeadObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { randomUUID } from 'node:crypto';
-import { requireAdmin } from '../_lib/admin';
-import { createB2Storage, isMissingStorageObject } from '../_lib/storage';
-import { validateThumbnailUpload } from '../_lib/upload-validation';
+import { requireAdmin } from '../_lib/admin.js';
+import { createB2Storage, isMissingStorageObject } from '../_lib/storage.js';
+import { validateThumbnailUpload } from '../_lib/upload-validation.js';
 
 const IMAGE_TYPES = {
   'image/jpeg': 'jpg',

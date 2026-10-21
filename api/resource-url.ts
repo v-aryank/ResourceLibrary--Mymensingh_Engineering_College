@@ -3,7 +3,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { createClient } from '@supabase/supabase-js';
 import { GetObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import { createB2Storage } from './_lib/storage';
+import { createB2Storage } from './_lib/storage.js';
 
 const MAX_URL_AGE_SECONDS = 300;
 

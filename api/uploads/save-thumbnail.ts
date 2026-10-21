@@ -4,14 +4,14 @@ import {
   GetObjectCommand,
   HeadObjectCommand,
 } from '@aws-sdk/client-s3';
-import { requireAdmin } from '../_lib/admin';
-import type { AdminContext } from '../_lib/admin';
-import { createB2Storage, isMissingStorageObject } from '../_lib/storage';
+import { requireAdmin } from '../_lib/admin.js';
+import type { AdminContext } from '../_lib/admin.js';
+import { createB2Storage, isMissingStorageObject } from '../_lib/storage.js';
 import {
   MAX_THUMBNAIL_BYTES,
   matchesThumbnailSignature,
   validateThumbnailUpload,
-} from '../_lib/upload-validation';
+} from '../_lib/upload-validation.js';
 
 const EXTENSION_TYPES: Record<string, string> = {
   jpg: 'image/jpeg',

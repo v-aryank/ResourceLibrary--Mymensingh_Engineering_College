@@ -3,9 +3,9 @@ import {
   CompleteMultipartUploadCommand,
   HeadObjectCommand,
 } from '@aws-sdk/client-s3';
-import { requireAdmin } from '../_lib/admin';
-import { createB2Storage, isMissingStorageObject } from '../_lib/storage';
-import { MAX_PDF_BYTES, PDF_PART_SIZE } from '../_lib/upload-validation';
+import { requireAdmin } from '../_lib/admin.js';
+import { createB2Storage, isMissingStorageObject } from '../_lib/storage.js';
+import { MAX_PDF_BYTES, PDF_PART_SIZE } from '../_lib/upload-validation.js';
 
 
 const VALID_CATEGORIES = [
