@@ -3,6 +3,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { ArchitecturalIntroduction } from './components/ArchitecturalIntroduction';
 import { CampusHighlights } from './components/CampusHighlights';
 import { Footer } from './components/Footer';
@@ -136,6 +137,7 @@ export default function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
+      <Analytics />
     </BrowserRouter>
   );
 }
