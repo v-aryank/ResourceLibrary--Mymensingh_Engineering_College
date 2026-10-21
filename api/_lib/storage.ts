@@ -33,6 +33,10 @@ export function createB2Storage(): B2Storage {
       endpoint: endpoint.origin,
       region: match[1],
       forcePathStyle: true,
+      // Backblaze B2 does not support the SDK's default flexible checksums.
+      // Without this, presigned UploadPart URLs embed a CRC32 of an empty body.
+      requestChecksumCalculation: 'WHEN_REQUIRED',
+      responseChecksumValidation: 'WHEN_REQUIRED',
       credentials: { accessKeyId, secretAccessKey },
     }),
   };

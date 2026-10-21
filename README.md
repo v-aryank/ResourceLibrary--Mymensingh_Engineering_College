@@ -59,14 +59,22 @@ switching between ports. Upload access still requires an existing admin account
 with `profiles.role = 'admin'`; changing ports or CORS settings does not grant
 administrator access.
 
-For this deployment, add a Backblaze bucket CORS rule with these values:
+For this deployment, the bucket must allow the S3 `Put Object` operation from
+the exact production and local origins. The Backblaze console's “share
+everything with one origin” preset has not allowed the multipart PUT in
+production. Use a custom B2 CLI CORS rule instead. After authorizing the
+official [B2 CLI](https://b2-command-line-tool.readthedocs.io/en/master/), run:
 
-- Allowed origins: `https://resourcelibrary-mec.vercel.app`,
-  `http://localhost:5173`, and `http://localhost:3001`.
-- Allowed operation: S3 `Put Object`.
-- Allowed header: `Content-Type`.
-- Exposed response header: `ETag`.
-- Max age: `3600` seconds.
+```bash
+b2 bucket update mec-resource-library --cors-rules '[{"corsRuleName":"mecResourceUpload","allowedOrigins":["https://resourcelibrary-mec.vercel.app","http://localhost:5173","http://localhost:3001"],"allowedOperations":["s3_put"],"allowedHeaders":["content-type","x-amz-*"],"exposeHeaders":["etag"],"maxAgeSeconds":3600}]'
+```
+
+This command replaces the bucket's complete CORS rule list. If the bucket
+already has rules needed for other services, first copy them and include them
+alongside this rule in `--cors-rules`; do not remove rules blindly. The rule
+is restricted to the production site and the two local development origins,
+allows only S3 PUT uploads, and exposes only the ETag needed to complete a
+multipart upload. See Backblaze's [CORS rule documentation](https://www.backblaze.com/docs/cloud-storage-cross-origin-resource-sharing-rules).
 
 The upload API and signing request can succeed while Backblaze rejects the
 browser's multipart `PUT`; that rejection is a bucket CORS configuration issue,
