@@ -59,6 +59,19 @@ switching between ports. Upload access still requires an existing admin account
 with `profiles.role = 'admin'`; changing ports or CORS settings does not grant
 administrator access.
 
+For this deployment, add a Backblaze bucket CORS rule with these values:
+
+- Allowed origins: `https://resourcelibrary-mec.vercel.app`,
+  `http://localhost:5173`, and `http://localhost:3001`.
+- Allowed operation: S3 `Put Object`.
+- Allowed header: `Content-Type`.
+- Exposed response header: `ETag`.
+- Max age: `3600` seconds.
+
+The upload API and signing request can succeed while Backblaze rejects the
+browser's multipart `PUT`; that rejection is a bucket CORS configuration issue,
+not a Vercel API route failure.
+
 Before using the admin Delete control, apply
 `supabase/migrations/20261020_resource_deletion_jobs.sql` in the Supabase SQL
 editor. It creates admin-only retry state for safe deletion across Supabase and
