@@ -4,14 +4,7 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "text/html"
-        }
-      ],
+      "source": "/((?!api(?:/|$)).*)",
       "destination": "/index.html"
     }
   ]
