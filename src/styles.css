@@ -1299,3 +1299,136 @@ html:has(dialog[open]) {
     top: -14px;
   }
 }
+
+/* Keep resource cards readable and easy to use on narrow screens. */
+@media (max-width: 600px) {
+  .resource-catalogue {
+    padding: 30px 16px 48px;
+  }
+
+  .catalogue-heading {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .catalogue-heading h2 {
+    font-size: 25px;
+  }
+
+  .result-count {
+    padding-top: 12px;
+    text-align: right;
+  }
+
+  .resource-category-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .resource-card {
+    min-height: 0;
+    padding: 11px 12px;
+    border-radius: 11px 8px 11px 8px;
+  }
+
+  .resource-card-main {
+    position: relative;
+    display: block;
+    min-height: 88px;
+  }
+
+  .resource-card-copy {
+    padding-right: 92px;
+  }
+
+  .resource-card-top {
+    min-height: 11px;
+    font-size: 8px;
+    line-height: 1.4;
+  }
+
+  .resource-card h3 {
+    display: -webkit-box;
+    margin: 5px 0 4px;
+    font-size: 18px;
+    line-height: 1.15;
+    -webkit-line-clamp: 3;
+    overflow-wrap: anywhere;
+  }
+
+  .resource-card-description {
+    margin-bottom: 0;
+    font-size: 11px;
+    line-height: 1.4;
+    -webkit-line-clamp: 2;
+  }
+
+  .resource-card-thumbnail {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 76px;
+    aspect-ratio: 3 / 4;
+  }
+
+  .resource-card .resource-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px 10px;
+    margin-top: 9px;
+  }
+
+  .resource-card .resource-meta div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 4px;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .resource-card .resource-meta dt {
+    font-size: 9px;
+  }
+
+  .resource-card .resource-meta dd {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    font-size: 10px;
+  }
+
+  .resource-actions {
+    gap: 2px 12px;
+    margin-top: 7px;
+    padding-top: 5px;
+  }
+
+  .resource-actions button,
+  .resource-actions a {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    font-size: 11px;
+  }
+
+  .resource-actions .unavailable-action {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .resource-card-copy {
+    padding-right: 82px;
+  }
+
+  .resource-card-thumbnail {
+    width: 68px;
+  }
+
+  .resource-card .resource-meta {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
