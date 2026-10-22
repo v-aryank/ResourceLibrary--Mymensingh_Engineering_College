@@ -891,7 +891,7 @@ export function ResourceLibraryPage() {
                 <>
                   <button type="button" className="button button-outline" onClick={() => void loadPreview(selectedResource)} disabled={previewLoading || resourceActionBusy}>Preview PDF</button>
                   <button type="button" className="button button-dark" onClick={() => void openResourceFile(selectedResource, false)} disabled={resourceActionBusy}>Open PDF</button>
-                  <button type="button" className="button button-dark" onClick={() => void openResourceFile(selectedResource, true)} disabled={resourceActionBusy}>Download file</button>
+                  <button type="button" className="button button-dark download-action" onClick={() => void openResourceFile(selectedResource, true)} disabled={resourceActionBusy}>Download file</button>
                 </>
               ) : (
                 <span className="unavailable-action">No PDF is attached to this resource.</span>
