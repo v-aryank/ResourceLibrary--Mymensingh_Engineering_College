@@ -32,6 +32,9 @@ export function ResourceLibraryPage() {
   const [resourceType, setResourceType] = useState('');
   const [courseSubject, setCourseSubject] = useState('');
   const [author, setAuthor] = useState('');
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const activeFilterCount = [department, academicYear, semester, resourceType, courseSubject, author]
+    .filter(Boolean).length + (activeCategory !== 'all' ? 1 : 0);
 
   const [selectedResource, setSelectedResource] =
     useState<AcademicResource | null>(null);
@@ -355,17 +358,6 @@ export function ResourceLibraryPage() {
           Search by title, author, subject, course code, or keyword.
         </p>
 
-        <ResourceSearchEntry
-          label="Search resources"
-          value={query}
-          onQueryChange={(value) =>
-            setSearchParams(value ? { q: value } : {})
-          }
-          onSearch={(value) =>
-            setSearchParams(value ? { q: value } : {})
-          }
-          className="library-search"
-        />
       </section>
 
       <section
@@ -386,6 +378,40 @@ export function ResourceLibraryPage() {
                 : `${filteredResources.length} ${filteredResources.length === 1 ? 'entry' : 'entries'}`}
           </span>
         </div>
+
+        <div className="catalogue-search-tools">
+          <ResourceSearchEntry
+            label="Search resources"
+            value={query}
+            onQueryChange={(value) =>
+              setSearchParams(value ? { q: value } : {})
+            }
+            onSearch={(value) =>
+              setSearchParams(value ? { q: value } : {})
+            }
+            className="library-search"
+          />
+          <button
+            className="mobile-filter-toggle"
+            type="button"
+            aria-expanded={filtersOpen}
+            aria-controls="resource-filters"
+            onClick={() => setFiltersOpen((open) => !open)}
+          >
+            <span className="filter-toggle-icon" aria-hidden="true">☷</span>
+            Filters
+            {activeFilterCount > 0 && <span className="active-filter-count">{activeFilterCount}</span>}
+            <span className="filter-toggle-caret" aria-hidden="true">{filtersOpen ? '−' : '+'}</span>
+          </button>
+        </div>
+
+        <label className="mobile-category-select">
+          <span>Browse category</span>
+          <select value={activeCategory} onChange={(event) => setActiveCategory(event.target.value as ResourceCategory | 'all')}>
+            <option value="all">All materials</option>
+            {resourceCategories.map((category) => <option key={category.id} value={category.id}>{category.label}</option>)}
+          </select>
+        </label>
 
         <div
           className="category-tabs"
@@ -418,7 +444,8 @@ export function ResourceLibraryPage() {
 
         <div className="resource-workspace">
           <aside
-            className="resource-filters"
+            id="resource-filters"
+            className={`resource-filters${filtersOpen ? ' is-open' : ''}`}
             aria-label="Filter resources"
           >
             <div className="filter-heading">

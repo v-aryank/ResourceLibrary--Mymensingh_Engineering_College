@@ -9,18 +9,14 @@ npm install
 npm run dev
 ```
 
-`npm run dev` starts the Vercel API server on port 3000 and the Vite frontend
-on port 5173, then opens `http://localhost:5173` in the system's external
-browser. Vite proxies `/api/*` requests to the Vercel server so both entry
-points use the same API routes and request/response formats.
+`npm run dev` starts the Vite frontend at `http://localhost:5173` and opens it
+in your external browser. The API server uses port 3000 when available, or
+another available port between 3000 and 3099; the `/api/*` proxy is configured
+automatically. Port 5173 must be free before starting.
 
-For the integrated browser workflow, run `npm run dev:vercel` (or
-`npm run vercel`) and open `http://localhost:3001`. This serves the Vite
-frontend and `/api/*` functions together without conflicting with
-`npm run dev`. Use `npm run dev` for the external browser at port 5173 and
-`npm run dev:vercel` for the integrated browser at port 3001. Each launcher
-refuses to take over an occupied port; stop a server from its owning terminal
-before retrying.
+`npm run dev:vercel` and `npm run vercel` are the optional integrated workflow
+on port 3001. `npm run dev:vite` starts only the frontend on port 5173 and
+expects an API server on port 3000.
 
 For authenticated upload flows, configure the existing Supabase and Backblaze
 environment variables in `.env.local`; never put Backblaze credentials in a

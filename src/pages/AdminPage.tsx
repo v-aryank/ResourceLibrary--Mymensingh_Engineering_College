@@ -1061,131 +1061,6 @@ export function AdminPage() {
               </button>
             </div>
 
-            <section className="admin-resource-manager" aria-labelledby="admin-resources-heading">
-              <div className="admin-manager-heading">
-                <div>
-                  <p className="section-kicker">Library administration</p>
-                  <h2 id="admin-resources-heading">Manage resources</h2>
-                  <p>Review resource details and control student visibility.</p>
-                </div>
-                <button
-                  className="button button-dark admin-refresh-button"
-                  type="button"
-                  onClick={() => setResourceRefreshKey((current) => current + 1)}
-                  disabled={resourcesLoading}
-                >
-                  {resourcesLoading ? 'Refreshing…' : 'Refresh list'}
-                </button>
-              </div>
-
-              <div className="admin-resource-filters" aria-label="Resource filters">
-                <label>
-                  Search resources
-                  <input
-                    type="search"
-                    value={resourceSearch}
-                    onChange={(event) => setResourceSearch(event.target.value)}
-                    placeholder="Title, author, subject, course…"
-                  />
-                </label>
-                <label>
-                  Category
-                  <select value={categoryFilter} onChange={(event) => setCategoryFilter(event.target.value as 'all' | ResourceCategory)}>
-                    <option value="all">All categories</option>
-                    {resourceCategories.map((category) => <option key={category.id} value={category.id}>{category.label}</option>)}
-                  </select>
-                </label>
-                <label>
-                  Department
-                  <select value={departmentFilter} onChange={(event) => setDepartmentFilter(event.target.value)}>
-                    <option value="all">All departments</option>
-                    <option value="EEE">EEE</option>
-                    <option value="CSE">CSE</option>
-                    <option value="CE">CE</option>
-                  </select>
-                </label>
-                <label>
-                  Publication
-                  <select value={publicationFilter} onChange={(event) => setPublicationFilter(event.target.value as PublicationFilter)}>
-                    <option value="all">All statuses</option>
-                    <option value="published">Published</option>
-                    <option value="unpublished">Unpublished</option>
-                  </select>
-                </label>
-              </div>
-
-              {managementError && <p className="admin-message admin-error" role="alert">{managementError}</p>}
-              {managementMessage && <p className="admin-message admin-success" role="status">{managementMessage}</p>}
-              {resourcesLoading && <p className="admin-message" role="status">Loading resources…</p>}
-              {!resourcesLoading && resourcesError && (
-                <div className="admin-message admin-error" role="alert">
-                  <p>{resourcesError}</p>
-                  <button className="button button-dark" type="button" onClick={() => setResourceRefreshKey((current) => current + 1)}>Try again</button>
-                </div>
-              )}
-              {!resourcesLoading && !resourcesError && adminResources.length === 0 && (
-                <p className="admin-message">No resources are available to manage yet.</p>
-              )}
-              {!resourcesLoading && !resourcesError && adminResources.length > 0 && visibleAdminResources.length === 0 && (
-                <p className="admin-message">No resources match these search and filter settings.</p>
-              )}
-
-              {!resourcesLoading && !resourcesError && visibleAdminResources.length > 0 && (
-                <>
-                  <p className="admin-resource-count" aria-live="polite">
-                    Showing {visibleAdminResources.length} of {adminResources.length} resources
-                  </p>
-                  <div className="admin-resource-list">
-                    {visibleAdminResources.map((resource) => (
-                      <article className="admin-resource-card" key={resource.id}>
-                        <div className="admin-resource-card-heading">
-                          <div>
-                            <p className="admin-resource-category">
-                              {resourceCategories.find((category) => category.id === resource.category)?.label ?? resource.category}
-                            </p>
-                            <h3>{resource.title}</h3>
-                          </div>
-                          <span className={`admin-status-badge ${resource.is_published ? 'is-published' : 'is-unpublished'}`}>
-                            {resource.is_published ? 'Published' : 'Unpublished'}
-                          </span>
-                        </div>
-                        <dl className="admin-resource-metadata">
-                          <div><dt>Author</dt><dd>{resource.author || 'Not specified'}</dd></div>
-                          <div><dt>Department</dt><dd>{resource.department || 'Not specified'}</dd></div>
-                          <div><dt>Academic year</dt><dd>{getResourceYears(resource)}</dd></div>
-                          <div><dt>Semester</dt><dd>{getResourceSemesters(resource)}</dd></div>
-                          <div><dt>Format</dt><dd>{resource.file_format || 'Not specified'}</dd></div>
-                          <div><dt>File size</dt><dd>{formatResourceSize(resource.file_size_bytes)}</dd></div>
-                          <div><dt>Created</dt><dd>{formatResourceDate(resource.created_at)}</dd></div>
-                        </dl>
-                        <div className="admin-resource-actions">
-                          <button className="button button-dark" type="button" onClick={() => void openResourceDetails(resource)}>View details</button>
-                          <button
-                            className="button button-outline"
-                            type="button"
-                            onClick={() => void changePublication(resource)}
-                            disabled={updatingResourceId === resource.id}
-                          >
-                            {updatingResourceId === resource.id
-                              ? 'Updating…'
-                              : resource.is_published ? 'Unpublish' : 'Publish'}
-                          </button>
-                          <button
-                            className="button button-outline admin-delete-button"
-                            type="button"
-                            onClick={() => void deleteResource(resource)}
-                            disabled={deletingResourceId !== null || updatingResourceId !== null}
-                          >
-                            {deletingResourceId === resource.id ? 'Deleting…' : 'Delete'}
-                          </button>
-                        </div>
-                      </article>
-                    ))}
-                  </div>
-                </>
-              )}
-            </section>
-
             <form
               className="admin-upload-form"
               onSubmit={handleUpload}
@@ -1442,6 +1317,131 @@ export function AdminPage() {
                 {busy ? 'Uploading…' : 'Upload resource'}
               </button>
             </form>
+
+            <section className="admin-resource-manager" aria-labelledby="admin-resources-heading">
+              <div className="admin-manager-heading">
+                <div>
+                  <p className="section-kicker">Library administration</p>
+                  <h2 id="admin-resources-heading">Manage resources</h2>
+                  <p>Review resource details and control student visibility.</p>
+                </div>
+                <button
+                  className="button button-dark admin-refresh-button"
+                  type="button"
+                  onClick={() => setResourceRefreshKey((current) => current + 1)}
+                  disabled={resourcesLoading}
+                >
+                  {resourcesLoading ? 'Refreshing…' : 'Refresh list'}
+                </button>
+              </div>
+
+              <div className="admin-resource-filters" aria-label="Resource filters">
+                <label>
+                  Search resources
+                  <input
+                    type="search"
+                    value={resourceSearch}
+                    onChange={(event) => setResourceSearch(event.target.value)}
+                    placeholder="Title, author, subject, course…"
+                  />
+                </label>
+                <label>
+                  Category
+                  <select value={categoryFilter} onChange={(event) => setCategoryFilter(event.target.value as 'all' | ResourceCategory)}>
+                    <option value="all">All categories</option>
+                    {resourceCategories.map((category) => <option key={category.id} value={category.id}>{category.label}</option>)}
+                  </select>
+                </label>
+                <label>
+                  Department
+                  <select value={departmentFilter} onChange={(event) => setDepartmentFilter(event.target.value)}>
+                    <option value="all">All departments</option>
+                    <option value="EEE">EEE</option>
+                    <option value="CSE">CSE</option>
+                    <option value="CE">CE</option>
+                  </select>
+                </label>
+                <label>
+                  Publication
+                  <select value={publicationFilter} onChange={(event) => setPublicationFilter(event.target.value as PublicationFilter)}>
+                    <option value="all">All statuses</option>
+                    <option value="published">Published</option>
+                    <option value="unpublished">Unpublished</option>
+                  </select>
+                </label>
+              </div>
+
+              {managementError && <p className="admin-message admin-error" role="alert">{managementError}</p>}
+              {managementMessage && <p className="admin-message admin-success" role="status">{managementMessage}</p>}
+              {resourcesLoading && <p className="admin-message" role="status">Loading resources…</p>}
+              {!resourcesLoading && resourcesError && (
+                <div className="admin-message admin-error" role="alert">
+                  <p>{resourcesError}</p>
+                  <button className="button button-dark" type="button" onClick={() => setResourceRefreshKey((current) => current + 1)}>Try again</button>
+                </div>
+              )}
+              {!resourcesLoading && !resourcesError && adminResources.length === 0 && (
+                <p className="admin-message">No resources are available to manage yet.</p>
+              )}
+              {!resourcesLoading && !resourcesError && adminResources.length > 0 && visibleAdminResources.length === 0 && (
+                <p className="admin-message">No resources match these search and filter settings.</p>
+              )}
+
+              {!resourcesLoading && !resourcesError && visibleAdminResources.length > 0 && (
+                <>
+                  <p className="admin-resource-count" aria-live="polite">
+                    Showing {visibleAdminResources.length} of {adminResources.length} resources
+                  </p>
+                  <div className="admin-resource-list">
+                    {visibleAdminResources.map((resource) => (
+                      <article className="admin-resource-card" key={resource.id}>
+                        <div className="admin-resource-card-heading">
+                          <div>
+                            <p className="admin-resource-category">
+                              {resourceCategories.find((category) => category.id === resource.category)?.label ?? resource.category}
+                            </p>
+                            <h3>{resource.title}</h3>
+                          </div>
+                          <span className={`admin-status-badge ${resource.is_published ? 'is-published' : 'is-unpublished'}`}>
+                            {resource.is_published ? 'Published' : 'Unpublished'}
+                          </span>
+                        </div>
+                        <dl className="admin-resource-metadata">
+                          <div><dt>Author</dt><dd>{resource.author || 'Not specified'}</dd></div>
+                          <div><dt>Department</dt><dd>{resource.department || 'Not specified'}</dd></div>
+                          <div><dt>Academic year</dt><dd>{getResourceYears(resource)}</dd></div>
+                          <div><dt>Semester</dt><dd>{getResourceSemesters(resource)}</dd></div>
+                          <div><dt>Format</dt><dd>{resource.file_format || 'Not specified'}</dd></div>
+                          <div><dt>File size</dt><dd>{formatResourceSize(resource.file_size_bytes)}</dd></div>
+                          <div><dt>Created</dt><dd>{formatResourceDate(resource.created_at)}</dd></div>
+                        </dl>
+                        <div className="admin-resource-actions">
+                          <button className="button button-dark" type="button" onClick={() => void openResourceDetails(resource)}>View details</button>
+                          <button
+                            className="button button-outline"
+                            type="button"
+                            onClick={() => void changePublication(resource)}
+                            disabled={updatingResourceId === resource.id}
+                          >
+                            {updatingResourceId === resource.id
+                              ? 'Updating…'
+                              : resource.is_published ? 'Unpublish' : 'Publish'}
+                          </button>
+                          <button
+                            className="button button-outline admin-delete-button"
+                            type="button"
+                            onClick={() => void deleteResource(resource)}
+                            disabled={deletingResourceId !== null || updatingResourceId !== null}
+                          >
+                            {deletingResourceId === resource.id ? 'Deleting…' : 'Delete'}
+                          </button>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </>
+              )}
+            </section>
 
             <dialog
               ref={detailsDialogRef}

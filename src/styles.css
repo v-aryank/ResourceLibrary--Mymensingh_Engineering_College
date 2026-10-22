@@ -1926,3 +1926,196 @@ main#top > section:not(.hero):hover .section-kicker{
   .download-action{min-height:30px!important;padding:0 8px!important}
 }
 @media(prefers-reduced-motion:reduce){.download-action{transition:none}}
+
+/* Admin workspace: keep upload controls first and make resource review denser. */
+.admin-page-inner{position:relative;width:min(100%,1400px)}
+.admin-page-inner:has(.admin-auth-status){padding-top:20px}
+.admin-auth-status{
+  position:absolute;
+  top:-34px;
+  right:0;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:nowrap;
+  gap:10px;
+  max-width:min(70%,560px);
+  margin:0;
+  padding:4px 7px 4px 10px;
+  border:1px solid rgba(117,64,47,.22);
+  border-radius:5px;
+  background:rgba(251,247,239,.86);
+}
+.admin-auth-status p{
+  min-width:0;
+  margin:0;
+  overflow:hidden;
+  color:#62493b;
+  font-size:11px;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.admin-auth-status strong{color:#38231d}
+.admin-auth-status .button{min-height:30px;padding:5px 9px;font-size:10px;white-space:nowrap}
+.admin-upload-form{max-width:1120px;margin:1.5rem 0 2rem}
+.admin-resource-manager{margin:1.5rem 0;padding:clamp(1rem,2.5vw,1.5rem)}
+.admin-resource-list{
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));
+  align-items:stretch;
+  gap:12px;
+}
+.admin-resource-card{
+  display:flex;
+  min-height:0;
+  padding:13px;
+  flex-direction:column;
+  border-radius:5px;
+  box-shadow:0 2px 6px rgba(60,35,22,.06);
+}
+.admin-resource-card-heading{gap:8px}
+.admin-resource-card h3{font-size:1.05rem;line-height:1.22}
+.admin-resource-category{font-size:.68rem}
+.admin-status-badge{min-height:23px;padding:.15rem .45rem;font-size:.66rem}
+.admin-resource-metadata{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.5rem .75rem;
+  margin:.8rem 0;
+}
+.admin-resource-metadata dt{font-size:.68rem}
+.admin-resource-metadata dd{font-size:.78rem;line-height:1.35}
+.admin-resource-actions{gap:7px;margin-top:auto;padding-top:9px}
+.admin-resource-actions .button{min-height:34px;padding:5px 9px;font-size:.78rem}
+@media(max-width:700px){
+  .admin-page-inner:has(.admin-auth-status){padding-top:34px}
+  .admin-auth-status{top:-30px;max-width:100%;gap:6px}
+  .admin-auth-status p{font-size:9px}
+  .admin-auth-status .button{min-height:28px;padding:4px 7px;font-size:9px}
+  .admin-upload-form{max-width:none;margin-top:1rem}
+  .admin-resource-list{grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:10px}
+  .admin-resource-card{padding:11px}
+}
+@media(max-width:520px){
+  .admin-resource-list{grid-template-columns:1fr}
+}
+
+/* Keep catalogue search prominent and immediately beside its filter controls. */
+.catalogue-search-tools{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  align-items:stretch;
+  gap:10px;
+  margin:16px 0 12px;
+}
+.library-search{width:100%;max-width:none;margin:0}
+.resource-search-entry{
+  min-height:56px;
+  gap:12px;
+  padding:6px 7px 6px 16px;
+  border:2px solid #d49761;
+  border-radius:7px 10px 7px 10px;
+  background:linear-gradient(120deg,rgba(47,22,17,.96),rgba(81,38,26,.94));
+  box-shadow:0 4px 0 rgba(53,24,16,.32),0 8px 17px rgba(40,15,10,.18),inset 0 1px rgba(255,238,206,.13);
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+.resource-search-entry:focus-within{
+  border-color:#f0bd86;
+  box-shadow:0 0 0 3px rgba(212,151,97,.2),0 7px 18px rgba(40,15,10,.22),inset 0 1px rgba(255,238,206,.17);
+}
+.resource-search-entry input{font-size:13px}
+.resource-search-entry input::placeholder{color:#d9c2a8;opacity:1}
+.resource-search-entry .search-mark{font-size:29px;color:#f0bd86}
+.resource-search-entry button{
+  min-width:104px;
+  border-radius:4px 7px 4px 7px;
+  background:linear-gradient(145deg,#d7a16e,#bb774a);
+  color:#351c15;
+  font-size:11px;
+  box-shadow:inset 0 1px rgba(255,242,220,.42),0 2px 4px rgba(25,10,5,.22);
+}
+.resource-search-entry button:hover{background:linear-gradient(145deg,#e8b884,#ca8758)}
+.mobile-filter-toggle,.mobile-category-select{display:none}
+.resource-workspace{padding-top:0}
+@media(max-width:760px){
+  .catalogue-search-tools{grid-template-columns:minmax(0,1fr) auto;gap:8px;margin:13px 0 10px}
+  .resource-search-entry{min-height:50px;gap:8px;padding-left:11px}
+  .resource-search-entry input{font-size:12px}
+  .resource-search-entry .search-mark{font-size:25px}
+  .resource-search-entry button{min-width:76px;padding:0 9px}
+  .mobile-filter-toggle{
+    display:inline-flex;
+    min-width:92px;
+    min-height:50px;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:0 9px;
+    border:1px solid #d49761;
+    border-radius:6px 8px 6px 8px;
+    background:linear-gradient(135deg,#75402c,#48251c);
+    color:#fff0d8;
+    font:600 10px var(--sans);
+    box-shadow:0 3px 0 #351810, inset 0 1px rgba(255,238,206,.16);
+    cursor:pointer;
+  }
+  .filter-toggle-icon{font-size:15px;color:#f0bd86}
+  .active-filter-count{
+    display:inline-grid;
+    min-width:17px;
+    height:17px;
+    padding:0 3px;
+    place-items:center;
+    border-radius:999px;
+    background:#e2aa75;
+    color:#351c15;
+    font-size:9px;
+  }
+  .filter-toggle-caret{font-size:14px;color:#f0bd86}
+  .mobile-category-select{
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr);
+    align-items:center;
+    gap:10px;
+    margin:0 0 10px;
+    color:#f5dcc0;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.05em;
+  }
+  .mobile-category-select select{
+    min-width:0;
+    min-height:40px;
+    padding:8px 10px;
+    border:1px solid rgba(212,151,97,.68);
+    border-radius:4px;
+    background:#f7eee0;
+    color:#48231b;
+    font:500 11px var(--sans);
+  }
+  .category-tabs{display:none}
+  .resource-workspace{display:block}
+  .resource-filters{display:none}
+  .resource-filters.is-open{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px 10px;
+    margin:0 0 14px;
+    padding:12px;
+    border:1px solid rgba(212,151,97,.5);
+    border-top:2px solid #d49761;
+    border-radius:5px;
+    background:rgba(53,25,19,.94);
+  }
+  .resource-filters .filter-heading{margin:0 0 3px}
+  .resource-filters label{margin:0;color:#f0d3b1}
+  .resource-filters select,.resource-filters input{min-height:39px;margin-top:5px;padding:7px 8px;font-size:10px}
+  .resource-filters .filters-note{display:none}
+  .resource-results{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:420px){
+  .catalogue-search-tools{grid-template-columns:minmax(0,1fr) 86px;gap:6px}
+  .resource-search-entry{gap:5px;padding-left:8px}
+  .resource-search-entry button{min-width:61px;padding:0 6px;font-size:9px}
+  .resource-search-entry button span{padding-left:4px}
+  .mobile-filter-toggle{min-width:86px;padding:0 5px;font-size:9px}
+  .mobile-category-select{grid-template-columns:minmax(0,1fr);gap:5px}
+}
