@@ -700,7 +700,7 @@ img {
   text-underline-offset: 4px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .admin-form-grid {
     grid-template-columns: 1fr;
   }
@@ -1301,9 +1301,9 @@ html:has(dialog[open]) {
 }
 
 /* Keep resource cards readable and easy to use on narrow screens. */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .resource-catalogue {
-    padding: 30px 16px 48px;
+    padding: 30px clamp(16px, 4vw, 32px) 48px;
   }
 
   .catalogue-heading {
@@ -1323,6 +1323,21 @@ html:has(dialog[open]) {
   .resource-category-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 10px;
+  }
+
+  .resource-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .resource-filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 12px;
+  }
+
+  .filter-heading,
+  .filters-note {
+    grid-column: 1 / -1;
   }
 
   .resource-card {
@@ -1430,5 +1445,16 @@ html:has(dialog[open]) {
 
   .resource-card .resource-meta {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .resource-filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .filter-heading,
+  .filters-note {
+    grid-column: auto;
   }
 }
