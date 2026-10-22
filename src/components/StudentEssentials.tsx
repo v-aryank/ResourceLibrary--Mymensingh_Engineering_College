@@ -5,7 +5,7 @@ import { ServiceAction } from './ServiceAction';
 export function StudentEssentials() {
   return (
     <section className="essentials-section" aria-labelledby="essentials-title">
-      <div className="section-kicker">03 <span>—</span> QUICK ACCESS</div>
+      <div className="section-kicker">02 <span>—</span> QUICK ACCESS</div>
       <div className="section-title-row">
         <h2 id="essentials-title">Student <em>essentials.</em></h2>
         <p>Useful starting points for the everyday work of student life.</p>

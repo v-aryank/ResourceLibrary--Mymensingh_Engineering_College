@@ -398,6 +398,10 @@ img {
 @media(max-width:760px){.organization-more-wrap{margin-top:20px}.organization-more-button{min-height:44px}.organization-count{line-height:1.6}}
 @media(prefers-reduced-motion:reduce){.organization-more-button{transition:none}}
 
+/* Keep sections 04 and 06 on the same brick-wash background as the rest of the page. */
+.essentials-section,.student-services,.organization-section{background:rgba(66,28,26,.56)}
+
+
 
 
 /* Student services: matching service cards */
@@ -1457,4 +1461,197 @@ html:has(dialog[open]) {
   .filters-note {
     grid-column: auto;
   }
+}
+
+/* Let more of the brick texture show through the site-wide warm overlays. */
+body{background-image:linear-gradient(rgba(55,24,18,.025),rgba(55,24,18,.025)),url("/brick-texture.webp")}
+.announcement{background:linear-gradient(rgba(72,35,27,.48),rgba(72,35,27,.48)),url("/brick-texture.webp") center/700px auto}
+.nav-wrap{background:rgba(66,28,26,.34)}
+.intro,.spaces,.essentials-section,.student-services,.organization-section,.resource-catalogue{background:rgba(66,28,26,.34)}
+footer{
+  background-color:#321d18;
+  background-image:linear-gradient(rgba(39,22,18,.78),rgba(39,22,18,.78)),url("/brick-texture.webp");
+  background-size:auto,700px auto;
+  background-position:center,center;
+  background-repeat:repeat,repeat;
+  border-top:2px solid rgba(205,135,83,.72);
+  box-shadow:inset 0 1px rgba(255,221,180,.12);
+}
+
+/* Distinct section rhythm: alternating washes, copper seams, and numbered markers. */
+main#top > .intro,
+main#top > .essentials-section,
+main#top > .organization-section{background:rgba(66,28,26,.27)}
+main#top > .spaces,
+main#top > .student-services{background:rgba(66,28,26,.43)}
+main#top > section:not(.hero){
+  position:relative;
+  border-top:2px solid rgba(234,170,111,.72);
+  box-shadow:inset 0 2px rgba(255,229,190,.12);
+  transition:background-color .28s ease,border-color .28s ease,box-shadow .28s ease;
+}
+main#top > section:not(.hero) .section-kicker{
+  display:inline-flex;
+  min-height:25px;
+  padding:0 11px;
+  align-items:center;
+  gap:9px;
+  border:1px solid rgba(226,166,111,.38);
+  border-radius:2px;
+  background:linear-gradient(110deg,rgba(48,20,15,.55),rgba(48,20,15,.18));
+  color:#f2c28e;
+  letter-spacing:.2em;
+  transition:background .28s ease,border-color .28s ease,color .28s ease,transform .28s ease;
+}
+main#top > section:not(.hero) .section-kicker span{color:#e59d68}
+main#top > section:not(.hero):hover{
+  border-top-color:#f1bb7e;
+  box-shadow:inset 0 3px rgba(255,220,169,.2),0 -5px 24px rgba(237,163,102,.13);
+}
+main#top > .intro:hover,
+main#top > .essentials-section:hover,
+main#top > .organization-section:hover{background:rgba(66,28,26,.38)}
+main#top > .spaces:hover,
+main#top > .student-services:hover{background:rgba(66,28,26,.53)}
+main#top > section:not(.hero):hover .section-kicker{
+  border-color:rgba(247,196,137,.72);
+  background:linear-gradient(110deg,rgba(75,34,22,.82),rgba(75,34,22,.42));
+  color:#ffe0b5;
+  transform:translateX(4px);
+}
+@media(prefers-reduced-motion:reduce){
+  main#top > section:not(.hero),main#top > section:not(.hero) .section-kicker{transition:none}
+}
+
+/* Panoramic campus hero with a translucent brick-toned reading panel. */
+.hero{
+  display:block;
+  height:clamp(390px,32vw,540px);
+  min-height:390px;
+  padding:0;
+  background:#48231b;
+}
+.hero-background{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:cover;
+  object-position:center 55%;
+}
+.hero:before{
+  z-index:1;
+  width:100%;
+  background:linear-gradient(90deg,rgba(58,27,21,.9) 0%,rgba(58,27,21,.86) 34%,rgba(58,27,21,.62) 48%,rgba(58,27,21,.18) 68%,transparent 82%);
+  border:0;
+}
+.hero:after{display:none}
+.hero-copy{
+  position:absolute;
+  top:50%;
+  left:8%;
+  width:min(48%,620px);
+  padding:0 38px 0 0;
+  transform:translateY(-50%);
+}
+.hero .eyebrow{color:#efbd8c}
+.hero .eyebrow-rule{background:#e3a06d}
+.hero h1{color:#fff1dd}
+.hero h1 em{color:#edb27e}
+.hero-lede{color:#f1dfc9}
+.hero-note,.hero-bottom,.scene-index{color:#f0dcc4}
+.hero-bottom{
+  left:8%;
+  right:8%;
+  border-top-color:rgba(255,231,203,.42);
+}
+@media(max-width:760px){
+  .hero{
+    height:clamp(500px,125vw,620px);
+    min-height:500px;
+  }
+  .hero-background{object-position:52% center}
+  .hero:before{
+    background:linear-gradient(90deg,rgba(58,27,21,.9),rgba(58,27,21,.79) 72%,rgba(58,27,21,.48));
+  }
+  .hero-copy{
+    top:46%;
+    left:22px;
+    width:calc(100% - 44px);
+    padding:0;
+  }
+  .hero-bottom{left:22px;right:22px}
+}
+@media(max-width:420px){
+  .hero .eyebrow{font-size:7px;letter-spacing:.13em}
+  .hero h1{font-size:35px}
+  .hero-lede{max-width:340px}
+}
+
+.campus-gallery{isolation:isolate;background:#2e1915}
+.campus-gallery:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(110deg,rgba(66,28,26,.78),rgba(155,68,45,.42) 52%,rgba(48,35,30,.72));
+}
+.campus-gallery img{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:none;
+  animation:gallery-photo-in .35s ease both;
+}
+.photo-band .campus-gallery-backdrop{
+  z-index:0;
+  object-fit:cover;
+  filter:blur(18px) brightness(.58) saturate(.8);
+  transform:scale(1.08);
+}
+.photo-band .campus-gallery-photo{
+  z-index:2;
+  object-fit:contain;
+  filter:none;
+}
+.campus-gallery .photo-overlay{z-index:3}
+.gallery-controls{
+  position:absolute;
+  z-index:4;
+  inset:50% 18px auto;
+  display:flex;
+  justify-content:space-between;
+  transform:translateY(-50%);
+  pointer-events:none;
+}
+.gallery-controls button{
+  display:grid;
+  width:42px;
+  height:42px;
+  place-items:center;
+  border:1px solid rgba(255,229,190,.7);
+  border-radius:50%;
+  background:rgba(53,25,19,.72);
+  color:#fff1dd;
+  font:22px/1 var(--serif);
+  cursor:pointer;
+  pointer-events:auto;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+.gallery-controls button:hover{
+  transform:scale(1.08);
+  border-color:#f0bd86;
+  background:rgba(110,49,32,.92);
+}
+.gallery-controls button:focus-visible{outline:2px solid #f0bd86;outline-offset:3px}
+@keyframes gallery-photo-in{from{opacity:.55}to{opacity:1}}
+@media(max-width:760px){
+  .campus-gallery{height:clamp(280px,70vw,390px)}
+  .gallery-controls{inset:50% 12px auto}
+  .gallery-controls button{width:38px;height:38px}
 }

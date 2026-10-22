@@ -11,7 +11,7 @@ export function StudentServices() {
     >
       <div className="service-copy">
         <div className="section-kicker">
-          04 <span>—</span> STUDENT TOOLS
+          03 <span>—</span> STUDENT TOOLS
         </div>
 
         <h2 id="tools-title">
