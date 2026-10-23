@@ -379,11 +379,13 @@ img {
     transition-duration: 0.01ms !important;
   }
 }
-/* GSAP only animates elements after enhancement; content stays visible without JavaScript. */
-.motion-ready .motion-reveal {
-  will-change: transform, opacity;
+/* Ease new route content into place after the browser paints it. */
+@keyframes route-arrive{
+  from{opacity:.78;transform:translateY(10px) scale(.995)}
+  to{opacity:1;transform:translateY(0) scale(1)}
 }
-
+.route-content{animation:route-arrive .48s cubic-bezier(.2,.7,.2,1) both}
+@media(prefers-reduced-motion:reduce){.route-content{animation:none}}
 
 /* Campus directory: keep the home page concise as the directory grows. */
 .organization-count{margin:10px 0 0;color:#e0c6a5;font-size:10px;letter-spacing:.08em;text-transform:uppercase}

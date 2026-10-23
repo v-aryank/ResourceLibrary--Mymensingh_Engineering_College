@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import { ArchitecturalIntroduction } from './components/ArchitecturalIntroduction';
@@ -14,18 +13,15 @@ import { StudentServices } from './components/StudentServices';
 import { ResourceLibraryPage } from './pages/ResourceLibraryPage';
 import { AdminPage } from './pages/AdminPage';
 
-gsap.registerPlugin(ScrollTrigger);
-
 /**
  * Progressive enhancement only: routing/content never depends on animation.
- * Lenis and ScrollTrigger share one GSAP ticker, with complete cleanup on unmount.
+ * Lenis uses the GSAP ticker for smooth wheel scrolling.
  */
 function MotionController() {
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) return;
 
-    document.documentElement.classList.add('motion-ready');
     const lenis = new Lenis({
       autoRaf: false,
       smoothWheel: true,
@@ -35,48 +31,13 @@ function MotionController() {
       prevent: (node) => Boolean(node.closest('dialog[open]')),
     });
 
-    const updateScrollTrigger = () => ScrollTrigger.update();
     const raf = (time: number) => lenis.raf(time * 1000);
-    lenis.on('scroll', updateScrollTrigger);
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
-    const context = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>(
-        'main > section, .resource-page-heading, .resource-catalogue, .not-found-page, footer'
-      ).forEach((element) => {
-        // Only animate sections below the first viewport; keep the hero immediate.
-        if (element.classList.contains('hero')) return;
-        gsap.fromTo(element,
-          { y: 18, autoAlpha: 0.82 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.65,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: element,
-              start: 'top 92%',
-              once: true,
-            },
-          }
-        );
-      });
-    });
-
-    // Refresh after fonts/layout settle, without tying rendering to image loading.
-    const refresh = () => ScrollTrigger.refresh();
-    window.addEventListener('load', refresh, { once: true });
-    const refreshFrame = window.requestAnimationFrame(refresh);
-
     return () => {
-      window.removeEventListener('load', refresh);
-      window.cancelAnimationFrame(refreshFrame);
-      context.revert();
-      lenis.off('scroll', updateScrollTrigger);
       gsap.ticker.remove(raf);
       lenis.destroy();
-      document.documentElement.classList.remove('motion-ready');
     };
   }, []);
 
@@ -85,15 +46,17 @@ function MotionController() {
 
 function ScrollManager() {
   const { pathname, hash } = useLocation();
+  const hasMounted = useRef(false);
 
   useEffect(() => {
     if (hash) {
       window.requestAnimationFrame(() => document.querySelector(hash)?.scrollIntoView({
         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
       }));
-    } else {
+    } else if (hasMounted.current) {
       window.scrollTo({ top: 0, behavior: 'auto' });
     }
+    hasMounted.current = true;
   }, [pathname, hash]);
 
   return null;
@@ -122,18 +85,28 @@ function NotFoundPage() {
   );
 }
 
-export default function App() {
+function RouteContent() {
+  const { pathname } = useLocation();
+
   return (
-    <BrowserRouter>
-      <MotionController />
-      <ScrollManager />
-      <Navbar />
+    <div className="route-content" key={pathname}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/resources" element={<ResourceLibraryPage />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <MotionController />
+      <ScrollManager />
+      <Navbar />
+      <RouteContent />
       <Footer />
       <Analytics />
     </BrowserRouter>
