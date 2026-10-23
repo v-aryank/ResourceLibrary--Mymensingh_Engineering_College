@@ -85,16 +85,16 @@ h1 em,h2 em{color:#e6ae83}
 .organization-card h3{font-size:18px}
 .organization-card p{margin:8px 0 17px;color:#69594a;font-size:10px;line-height:1.7}.organization-links{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:10px;font-size:9px}.organization-links a{color:#843d29;text-decoration:underline;text-underline-offset:3px}.organization-contact{margin-top:10px;color:#806f5b;font-size:9px}
 .resource-page{min-height:70vh;background:transparent;color:#48231b}
-.resource-page-heading{padding:66px 10.4% 48px;color:#fbf2dc;background:rgba(66,28,26,.625)}
+.resource-page-heading{padding:42px 10.4% 32px;color:#fbf2dc;background:rgba(66,28,26,.625)}
 .resource-page-heading .section-kicker{color:#e4a87c}
-.resource-page-heading h1{margin:22px 0 15px;color:#fbf2dc;font:500 clamp(44px,5.5vw,68px)/1.02 var(--serif);letter-spacing:-.045em}
+.resource-page-heading h1{margin:14px 0 10px;color:#fbf2dc;font:500 clamp(44px,5.5vw,68px)/1.02 var(--serif);letter-spacing:-.045em}
 .resource-page-heading h1 em{color:#e6ae83}
 .resource-page-heading>p{max-width:520px;margin:0;color:#e0d1b8;font-size:12px;line-height:1.8}
 .library-search{max-width:620px;margin-top:24px}
-.resource-catalogue{padding:44px 7% 72px;background:rgba(247,240,223,.97)}
-.catalogue-heading{display:flex;align-items:end;justify-content:space-between;padding-bottom:22px;border-bottom:1px solid rgba(72,35,27,.2)}
-.catalogue-heading h2{margin:9px 0 0;color:#48231b;font:500 31px var(--serif);letter-spacing:-.035em}
-.result-count{color:#806f5b;font-size:10px}
+.resource-catalogue{padding:26px 7% 72px;background:rgba(247,240,223,.97)}
+.catalogue-heading{display:flex;align-items:end;justify-content:space-between;padding-bottom:8px;border-bottom:0}
+.catalogue-heading h2{margin:4px 0 0;color:#48231b;font:500 27px var(--serif);letter-spacing:-.035em}
+.result-count{grid-column:1/-1;justify-self:end;margin-top:-4px;color:#806f5b;font-size:10px;text-align:right}
 .category-tabs{display:flex;gap:7px;flex-wrap:wrap;padding:17px 0;border-bottom:1px solid rgba(72,35,27,.2)}
 .category-tabs button{border:1px solid rgba(72,35,27,.25);padding:9px 12px;background:transparent;color:#69594a;font:500 9px var(--sans);cursor:pointer}
 .category-tabs button:hover,.category-tabs button.active{background:#71301f;color:#fff3db;border-color:#71301f}
@@ -168,7 +168,7 @@ h1 em,h2 em{color:#e6ae83}
   .essentials-section,.organization-section{padding:60px 22px}
   .student-services{grid-template-columns:1fr;gap:32px;padding:62px 22px}
   .organization-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .resource-page-heading{padding:55px 22px 38px}
+  .resource-page-heading{padding:36px 22px 26px}
   .resource-catalogue{padding:34px 22px 55px}
   .resource-workspace{grid-template-columns:1fr}
   .resource-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}
@@ -1890,7 +1890,7 @@ main#top > section:not(.hero):hover .section-kicker{
   .resource-actions .unavailable-action{font-size:7px}
 }
 @media(min-width:1024px){
-  .resource-category-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+  .resource-category-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
 }
 
 .download-action{
@@ -2004,7 +2004,7 @@ main#top > section:not(.hero):hover .section-kicker{
   grid-template-columns:minmax(0,1fr);
   align-items:stretch;
   gap:10px;
-  margin:16px 0 12px;
+  margin:8px 0 12px;
 }
 .library-search{width:100%;max-width:none;margin:0}
 .resource-search-entry{
@@ -2036,7 +2036,8 @@ main#top > section:not(.hero):hover .section-kicker{
 .mobile-filter-toggle,.mobile-category-select{display:none}
 .resource-workspace{padding-top:0}
 @media(max-width:760px){
-  .catalogue-search-tools{grid-template-columns:minmax(0,1fr) auto;gap:8px;margin:13px 0 10px}
+  .catalogue-search-tools{grid-template-columns:minmax(0,1fr) auto;gap:8px;margin:8px 0 10px}
+  .catalogue-search-tools .result-count{grid-column:1/-1;grid-row:2;margin-top:0}
   .resource-search-entry{min-height:50px;gap:8px;padding-left:11px}
   .resource-search-entry input{font-size:12px}
   .resource-search-entry .search-mark{font-size:25px}

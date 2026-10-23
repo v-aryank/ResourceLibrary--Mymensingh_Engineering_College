@@ -370,13 +370,6 @@ export function ResourceLibraryPage() {
             <h2 id="catalogue-title">Browse resources</h2>
           </div>
 
-          <span className="result-count" aria-live="polite">
-            {loadingResources
-              ? 'Loading…'
-              : resourceLoadError
-                ? 'Catalogue unavailable'
-                : `${filteredResources.length} ${filteredResources.length === 1 ? 'entry' : 'entries'}`}
-          </span>
         </div>
 
         <div className="catalogue-search-tools">
@@ -391,6 +384,13 @@ export function ResourceLibraryPage() {
             }
             className="library-search"
           />
+          <span className="result-count" aria-live="polite">
+            {loadingResources
+              ? 'Loading…'
+              : resourceLoadError
+                ? 'Catalogue unavailable'
+                : `${filteredResources.length} ${filteredResources.length === 1 ? 'entry' : 'entries'}`}
+          </span>
           <button
             className="mobile-filter-toggle"
             type="button"

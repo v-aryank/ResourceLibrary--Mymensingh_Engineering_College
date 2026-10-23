@@ -38,7 +38,7 @@ export function Navbar() {
         <Link to="/#campus" onClick={closeMenu}>Campus</Link>
         <Link to="/#student-tools" onClick={closeMenu}>Essential Tools</Link>
         <Link to="/#clubs" onClick={closeMenu}>Clubs &amp; Labs</Link>
-        <Link className="nav-cta" to="/resources" onClick={closeMenu}>Explore Library <span>↗</span></Link>
+        <Link className="nav-cta" to="/resources" onClick={closeMenu}>Resource Library <span>↗</span></Link>
       </nav>
     </header>
   );

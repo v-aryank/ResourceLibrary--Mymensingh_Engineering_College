@@ -14,7 +14,7 @@ export function HeroSection() {
         <h1 id="hero-title">Our Campus.<br />Our Resources.<br /><em>One Desk.</em></h1>
         <p className="hero-lede">Academic resources, assignment tools, printing services, and student communities — brought together for MEC students.</p>
         <div className="hero-actions">
-          <Link className="button button-dark" to="/resources">Explore Resources <span aria-hidden="true">↗</span></Link>
+          <Link className="button button-dark" to="/resources">Explore The Library<span aria-hidden="true">↗</span></Link>
           <a className="text-link" href="#student-tools">Student tools <span aria-hidden="true">↓</span></a>
         </div>
         <div className="hero-note"><span className="note-dot" />All your needs are here<span className="note-line" /></div>
